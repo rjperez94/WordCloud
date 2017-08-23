@@ -109,7 +109,6 @@ public class WordCloud implements UIButtonListener {
         normaliseCounts(counts1);
         normaliseCounts(counts2);
 
-        /*# YOUR CODE HERE */
         for (String wd: findAllWords()) {
             if (counts1.containsKey(wd) && counts2.containsKey(wd)) {
                 UI.setFontSize((int)(10+(1000*(counts1.get(wd)+counts2.get(wd)))));
@@ -228,7 +227,9 @@ public class WordCloud implements UIButtonListener {
                 + " words");
             removeInfrequentWords(counts1,numWordsToRemove);
             removeInfrequentWords(counts2,numWordsToRemove);
-            numWordsToRemove = numWordsToRemove/2; // It halves each time.
+            if (numWordsToRemove > 50) {
+                numWordsToRemove = numWordsToRemove-1;
+            }
         }
 
         else if (button.equals("remove un-shared words") ) {
